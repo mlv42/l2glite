@@ -25,7 +25,7 @@
 import copy
 import numpy as np
 from numpy.typing import ArrayLike
-from l2g-light.patch.lazy import (
+from l2gl.patch.lazy import (
     BaseLazyCoordinates,
     LazyMeanAggregatorCoordinates,
     LazyFileCoordinates,
