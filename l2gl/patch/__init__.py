@@ -1,4 +1,4 @@
 from .patch import Patch
-from .patch_data import PatchData
+from .utils import AlignmentProblem
 
-__all__ = ["Patch", "PatchData"]
+__all__ = ["Patch", "AlignmentProblem"]
