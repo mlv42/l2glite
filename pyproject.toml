@@ -1,0 +1,96 @@
+[build-system]
+requires = ['setuptools>=40.8.0']
+build-backend = 'setuptools.build_meta'
+
+[tool.setuptools]
+
+  [tool.setuptools.packages.find]
+    where = ["."]
+    include = ["l2gl", "l2gl.patch", "l2gl.embedding", "l2gl.embedding.gae", "l2gl.embedding.gae.layers", "l2gl.embedding.gae.models", "l2gl.embedding.gae.utils", "l2gl.utils"]
+
+# project
+# #######
+[project]
+name = "l2gl"
+version = "0.1.0"
+authors = [
+  { name="Martin Lotz", email="martin.lotz@warwick.ac.uk" }
+]
+description = "Infer global embeddings from local graph embeddings trained in parallel"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: BSD 3-Clause License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "autograd ~= 1.7",
+    "ilupp == 1.0.*",
+    "networkx ~= 3.4",
+    "numba >= 0.60",
+    "numpy == 1.*",
+    "polars ~= 1.15",
+    "pymanopt ~= 2.2",
+    "pymetis",
+    "python-louvain == 0.16",  # imported as 'community'
+    "raphtory >= 0.13",
+    "scikit-learn >= 1",
+    "scipy == 1.*",
+    "torch == 2.4.*; sys_platform == 'linux'",
+    "torch == 2.5.*; sys_platform == 'darwin'",
+    "torch-geometric ~= 2.6",
+    "torch-scatter ~= 2.1",
+    "tqdm >= 4"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest >= 8",
+    "pytest-cov",
+    "pytest-xdist",
+    "pylint",
+    "pre_commit == 4.0.1"
+]
+docs = [
+    "Sphinx == 8.*",
+    "sphinx-markdown-builder==0.6.*",
+    "myst-parser >= 4",
+    "pydata-sphinx-theme"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/tripudium/l2glite"
+"Bug Tracker" = "https://github.com/tripudium/l2glite/issues"
+
+# pylint
+# ######
+[tool.pylint.'MASTER']
+ignore = ["docs/*"]
+
+[tool.pylint.'MESSAGES CONTROL']
+notes = "TODO"
+disable = [
+    "fixme",
+    "import-error",
+    "duplicate-code",
+]
+
+# pyright
+# #######
+[tool.pyright]
+include = ["l2glite"]
+exclude = []
+ignore = []
+defineConstant = { DEBUG = true }
+
+reportMissingImports = false
+reportAttributeAccessIssue = false
+reportOptionalMemberAccess = false
+reportOptionalSubscript = false
+reportGeneralTypeIssues = false
+reportMissingTypeStubs = false
+
+[tool.coverage.run]
+omit = ["tests/*"]
